@@ -1,0 +1,364 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, #fffcfc, #fffbfb);
+  color: rgba(0, 0, 0, 0.699);
+  overflow-x: hidden;
+}
+
+/*
+
+  HEADER STYLES
+
+*/
+
+#header {
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: row;
+  gap: 30px;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  background: linear-gradient(90deg, #fffcfc, #fffbfb);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.091);
+  padding: 15px;
+}
+#header h1 {
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+#header input {
+  padding: 10px;
+  width: 10vw;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  border: none;
+  cursor: pointer;
+  background: #41b0f540;
+  color: rgba(0, 0, 0, 0.742);
+  font-weight: bold;
+  transition: box-shadow 0.3s ease;
+  position: absolute;
+}
+
+#header input:hover {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#header .search-btn {
+  padding: 9px;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  top: 3px;
+  left: 135px;
+  cursor: pointer;
+  display: flex;
+  background: rgba(197, 176, 176, 0.304);
+  color: rgba(0, 0, 0, 0.594);
+  font-family: "Roboto";
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: smaller;
+}
+/* #header .search-btn:after {
+  content: "";
+  width: 105%;
+  height: 110%;
+  background: linear-gradient(to bottom right, #ffffff, #010101);
+  z-index: -1;
+  position: absolute;
+  top: -1.4px;
+  left: -1.8px;
+  border-radius: 1000px;
+  box-shadow: 10px 0 800px #030301;
+} */
+.search-btn:hover {
+  color: white;
+  z-index: 0;
+  box-shadow: 10px 0 800px #000306;
+}
+
+.fa-bitcoin {
+  font-size: 1.5rem;
+  color: gold;
+  animation: 2s rotate ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  75% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 
+
+  NAVBAR STYLES
+
+*/
+
+.nav-bar {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  z-index: 100;
+  margin-right: 100px;
+}
+.nav-bar .tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  font-weight: 600;
+}
+
+.nav-btn {
+  border: none;
+  background: linear-gradient(90deg, #fffcfc, #fffbfb);
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  padding-bottom: 6px;
+  color: rgba(0, 0, 0, 0.699);
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+  padding-bottom: 6px;
+  color: #52a50e;
+}
+
+.fa-star {
+  color: gold;
+}
+
+/* 
+
+  MAIN CONTENT CONTAINER
+
+*/
+
+.main-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
+.main-content-title-div h1 {
+  margin-top: 140px;
+  margin-left: 30px;
+  color: rgba(0, 0, 0, 0.763);
+}
+.main-content-title-div p {
+  margin-top: 20px;
+  margin-left: 35px;
+}
+.leaderboard-container {
+  width: 100vw;
+  height: 45vh;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.div-for-market-cap-and-trading-volume {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+.div-for-market-cap-and-trading-volume .market-cap,
+.div-for-market-cap-and-trading-volume .trading-volume {
+  height: 24vh;
+  width: 30vw;
+  border: 3px solid rgba(128, 128, 128, 0.151);
+  border-radius: 20px;
+  background: white;
+}
+.market-cap h3,
+.trading-volume h3 {
+  margin-top: 25px;
+  margin-left: 12px;
+  font-size: 1.5rem;
+}
+.market-cap h4,
+.trading-volume h4 {
+  color: rgba(0, 0, 0, 0.402);
+  margin-top: 8px;
+  margin-left: 12px;
+}
+.green {
+  color: #52a50e;
+}
+
+.trending-div,
+.largest-gainers-div {
+  border: none;
+  background: none;
+}
+.trending,
+.gainers {
+  border: 3px solid rgba(128, 128, 128, 0.151);
+  border-radius: 20px;
+  height: 40vh;
+  width: 33vw;
+  margin-top: 30px;
+}
+.trending h4,
+.gainers h4 {
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.699);
+}
+.trending .fa-fire {
+  color: #ff6403;
+  font-size: 1.7rem;
+  letter-spacing: 7px;
+}
+.gainers .fa-moon {
+  color: #f8d451;
+  letter-spacing: 7px;
+  font-size: 1.7rem;
+}
+
+.trending-coins,
+.gaining-coins {
+  margin-bottom: 20px;
+  margin-left: 15px;
+}
+
+.trending-coins h4,
+.gaining-coins h4,
+.trending-amount h4,
+.gain-amount h4 {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.594);
+}
+.gain-amount .fa-caret-up,
+.trending-amount .fa-caret-up {
+  font-size: 0.8rem;
+}
+.trending-container,
+.gain-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 90px;
+}
+/* 
+
+    COIN TABLE STYLING
+
+*/
+
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.coin-table {
+  background: none;
+  border-radius: 20px;
+  border: 3px solid rgba(128, 128, 128, 0.151);
+}
+
+.coin-table tr {
+  text-align: center;
+}
+
+.coin-table .position,
+.coin-table .coin,
+.coin-table .price,
+.coin-table .volume,
+.coin-table .market-cap,
+.coin-table .graph {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.176);
+}
+
+.coin-table .position,
+.coin-table .coin,
+.coin-table .price,
+.coin-table .volume,
+.coin-table .market-cap {
+  border-right: 1px solid rgba(128, 128, 128, 0.151);
+}
+
+.coin-table tr td {
+  padding: 10px;
+}
+
+.coin-table .position {
+  width: 50px;
+}
+.coin-table .coin {
+  width: 350px;
+}
+.coin-table .price {
+  width: 120px;
+}
+.coin-table .volume {
+  width: 200px;
+}
+.coin-table .market-cap {
+  width: 250px;
+}
+.coin-table .graph {
+  width: 250px;
+}
+.coin-table .position-value,
+.coin-table .coin-value,
+.coin-table .price-value,
+.coin-table .volume-value,
+.coin-table .market-cap-value,
+.coin-table .graph-value {
+  height: 70px;
+  color: rgba(0, 0, 0, 0.763);
+  font-size: 1rem;
+}
+.coin-table .position-value,
+.coin-table .coin-value,
+.coin-table .price-value,
+.coin-table .volume-value,
+.coin-table .market-cap-value {
+  border-right: 1px solid rgba(128, 128, 128, 0.151);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.151);
+}
+.coin-table .graph-value {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.151);
+}
