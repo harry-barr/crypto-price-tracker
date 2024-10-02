@@ -23,9 +23,8 @@ body {
   margin-bottom: 0px;
   display: flex;
   justify-content: left;
-  align-items: left;
+  align-items: center;
   flex-direction: row;
-  gap: 30px;
   position: sticky;
   top: 0px;
   z-index: 100;
@@ -33,16 +32,18 @@ body {
   border-bottom: 2px solid rgba(0, 0, 0, 0.091);
   padding: 15px;
 }
-#header h1 {
+#header .title {
   letter-spacing: 1px;
-  font-size: 1.5rem;
   cursor: pointer;
+  margin-right: 20px;
+  font-size: 40px;
 }
-#header input {
+
+#header .search-input {
   padding: 10px;
   width: 10vw;
   border-radius: 10px;
-  margin-bottom: 5px;
+  margin-top: 0px;
   border: none;
   cursor: pointer;
   background: #41b0f540;
@@ -52,7 +53,7 @@ body {
   position: absolute;
 }
 
-#header input:hover {
+#header .search-input:hover {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -61,7 +62,8 @@ body {
   border-radius: 1000px;
   border: none;
   position: relative;
-  top: 3px;
+  margin-top: 5px;
+  top: -2px;
   left: 135px;
   cursor: pointer;
   display: flex;
@@ -91,7 +93,6 @@ body {
 }
 
 .fa-bitcoin {
-  font-size: 1.5rem;
   color: gold;
   animation: 2s rotate ease-in-out infinite;
 }
@@ -127,7 +128,7 @@ body {
   justify-content: center;
   flex-wrap: nowrap;
   z-index: 100;
-  margin-right: 100px;
+  margin-right: 20px;
 }
 .nav-bar .tabs {
   display: flex;
@@ -181,7 +182,7 @@ body {
 }
 .leaderboard-container {
   width: 100vw;
-  height: 45vh;
+  height: 250px;
   border-radius: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -200,8 +201,8 @@ body {
 }
 .div-for-market-cap-and-trading-volume .market-cap,
 .div-for-market-cap-and-trading-volume .trading-volume {
-  height: 24vh;
-  width: 30vw;
+  height: 270px;
+  width: 350px;
   border: 3px solid rgba(128, 128, 128, 0.151);
   border-radius: 20px;
   background: white;
@@ -220,6 +221,13 @@ body {
 }
 .green {
   color: #52a50e;
+  margin-left: 5px;
+  font-size: 0.9rem;
+}
+.red {
+  color: rgb(227, 22, 22);
+  margin-left: 5px;
+  font-size: 0.9rem;
 }
 
 .trending-div,
@@ -231,14 +239,14 @@ body {
 .gainers {
   border: 3px solid rgba(128, 128, 128, 0.151);
   border-radius: 20px;
-  height: 40vh;
-  width: 33vw;
+  height: 220px;
+  width: 430px;
   margin-top: 30px;
 }
 .trending h4,
 .gainers h4 {
   margin-left: 15px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 0;
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.699);
@@ -260,11 +268,14 @@ body {
   margin-left: 15px;
 }
 
-.trending-coins h4,
+.trending-coins h4 {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.594);
+}
 .gaining-coins h4,
 .trending-amount h4,
 .gain-amount h4 {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.594);
 }
 .gain-amount .fa-caret-up,
@@ -277,6 +288,14 @@ body {
   flex-direction: row;
   margin-top: 10px;
   gap: 90px;
+}
+
+.trending-amount {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 0.9rem;
 }
 /* 
 
@@ -293,7 +312,7 @@ body {
 
 .coin-table {
   background: none;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 3px solid rgba(128, 128, 128, 0.151);
 }
 
@@ -361,4 +380,20 @@ body {
 }
 .coin-table .graph-value {
   border-bottom: 1px solid rgba(128, 128, 128, 0.151);
+}
+.coin-table .position-value,
+.coin-table .coin-value {
+  font-weight: 700;
+}
+.crypto-img {
+  height: 20px;
+  width: 20px;
+  margin-left: 15px;
+  margin-bottom: 0;
+}
+.trending-img {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+  margin-top: 5px;
 }

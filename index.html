@@ -20,7 +20,9 @@
   <body>
     <header id="header">
       <div class="title-and-search-div">
-        <h1>Crypto Tracker <i class="fa-brands fa-bitcoin"></i></h1>
+        <h1 class="title">
+          Crypto Tracker <i class="fa-brands fa-bitcoin"></i>
+        </h1>
       </div>
       <nav class="nav-bar">
         <div class="tabs">
@@ -47,14 +49,14 @@
           </button>
         </div>
       </nav>
-      <div>
-        <input type="text" placeholder="search..." />
+      <div class="search-div">
+        <input type="text" class="search-input" placeholder="search..." />
         <button class="search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
     </header>
-    
+
     <div class="main-content-title-div">
       <h1>Cryptocurrency Prices by Market Cap</h1>
       <p>Changes in the last 24h</p>
@@ -62,15 +64,7 @@
     <div class="main-content-container">
       <div class="leaderboard-container">
         <div class="div-for-market-cap-and-trading-volume">
-          <div class="market-cap">
-            <h3>$2,396,142,556,301</h3>
-            <h4>
-              Market Cap
-              <span class="green"
-                ><i class="fa-solid fa-arrow-up"></i> 1.5%</span
-              >
-            </h4>
-          </div>
+          <div class="market-cap"></div>
           <div class="trading-volume">
             <h3>$104,532,122,123</h3>
             <h4>
@@ -87,24 +81,8 @@
               <i class="fa-solid fa-fire"></i
               ><span class="space"></span> Trending
             </h4>
-            <div class="trending-container">
-            <div class="trending-coins">
-              <h4>Ice Open Network</h4>
-              <h4>CHEQD Network</h4>
-              <h4>zkRace</h4>
-            </div>
-            <div class="trending-amount">
-              <h4>$0.15 <span class="green"
-                ><i class="fa-solid fa-caret-up"></i> 1.2%</span
-                ></h4>
-              <h4>$0.13 <span class="green"
-                ><i class="fa-solid fa-caret-up"></i> 1.2%</span
-                ></h4>
-              <h4>$35.21 <span class="green"
-                ><i class="fa-solid fa-caret-up"></i> 1.2%</span></h4>
-            </div>
-            </div>
-        </div>
+            <div class="trending-container"></div>
+          </div>
         </div>
         <div class="largest-gainers-div">
           <div class="gainers">
@@ -113,22 +91,31 @@
               ><span class="space"></span> Largest Gainers
             </h4>
             <div class="gain-container">
-            <div class="gaining-coins">
-              <h4>Ice Open Network</h4>
-              <h4>CHEQD Network</h4>
-              <h4>zkRace</h4>
-            </div>
-            <div class="gain-amount">
-              <h4>$0.52 <span class="green"
-              ><i class="fa-solid fa-caret-up"></i> 1.2%</span
-              ></h4>
-              <h4>$54.23 <span class="green"
-              ><i class="fa-solid fa-caret-up"></i> 4.1%</span
-              ></h4>
-              <h4>$59.12 <span  class="green"
-              ><i class="fa-solid fa-caret-up"></i> 2.3%</span
-              ></h4>
-            </div>
+              <div class="gaining-coins">
+                <h4>Ice Open Network</h4>
+                <h4>CHEQD Network</h4>
+                <h4>zkRace</h4>
+              </div>
+              <div class="gain-amount">
+                <h4>
+                  $0.52
+                  <span class="green"
+                    ><i class="fa-solid fa-caret-up"></i> 1.2%</span
+                  >
+                </h4>
+                <h4>
+                  $54.23
+                  <span class="green"
+                    ><i class="fa-solid fa-caret-up"></i> 4.1%</span
+                  >
+                </h4>
+                <h4>
+                  $59.12
+                  <span class="green"
+                    ><i class="fa-solid fa-caret-up"></i> 2.3%</span
+                  >
+                </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -140,28 +127,12 @@
           <th class="position">#</th>
           <th class="coin">Coin</th>
           <th class="price">Price</th>
-          <th class="volume">24h Volume</th>
+          <th class="volume">Total Volume</th>
           <th class="market-cap">Market Cap</th>
           <th class="graph">Last 7 Days</th>
         </tr>
-        <tr>
-          <td class="position-value">1</td>
-          <td class="coin-value">Bitcoin</td>
-          <td class="price-value">$61,438</td>
-          <td class="volume-value">$33,585,247,932</td>
-          <td class="market-cap-value">$1,309,053,310,156</td>
-          <td class="graph-value">GRAPH GOES HERE</td>
-        </tr>
-        <tr>
-        </tr>
-          <td class="position-value">1</td>
-          <td class="coin-value">Bitcoin</td>
-          <td class="price-value">$61,438</td>
-          <td class="volume-value">$33,585,247,932</td>
-          <td class="market-cap-value">$1,309,053,310,156</td>
-          <td class="graph-value">GRAPH GOES HERE</td>
-        </tr>
       </table>
     </div>
+    <script src="script.js" type="module"></script>
   </body>
 </html>
