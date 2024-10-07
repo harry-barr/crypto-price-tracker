@@ -33,31 +33,26 @@
             <option value="">Popular</option>
           </select>
           <select class="nav-btn">
-            <option value="">NFTs</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-          </select>
-          <select class="nav-btn">
             <option value="">Exchanges</option>
             <option value=""></option>
             <option value=""></option>
             <option value=""></option>
           </select>
+          <button class="nav-btn">News</button>
           <button class="nav-btn">
             Favourites <i class="fa-solid fa-star"></i>
           </button>
         </div>
       </nav>
-      <div class="search-div">
+      <form class="search-div" id="search-form">
         <input type="text" class="search-input" placeholder="search..." />
         <button class="search-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-      </div>
+      </form>
     </header>
 
-    <div class="main-content-title-div">
+    <section class="main-content-title-div">
       <h1>Cryptocurrency Prices by Market Cap</h1>
       <p>Changes in the last 24h</p>
     </div>
@@ -65,58 +60,15 @@
       <div class="leaderboard-container">
         <div class="div-for-market-cap-and-trading-volume">
           <div class="market-cap"></div>
-          <div class="trading-volume">
-            <h3>$104,532,122,123</h3>
-            <h4>
-              Trading Volume
-              <span class="green"
-                ><i class="fa-solid fa-arrow-up"></i> 1.5%</span
-              >
-            </h4>
-          </div>
+          <div class="trading-volume"></div>
         </div>
         <div class="trending-div">
           <div class="trending">
             <h4>
-              <i class="fa-solid fa-fire"></i
-              ><span class="space"></span> Trending
+              Trending<span class="space"></span>
+              <i class="fa-solid fa-fire"></i>
             </h4>
             <div class="trending-container"></div>
-          </div>
-        </div>
-        <div class="largest-gainers-div">
-          <div class="gainers">
-            <h4>
-              <i class="fa-solid fa-moon"></i
-              ><span class="space"></span> Largest Gainers
-            </h4>
-            <div class="gain-container">
-              <div class="gaining-coins">
-                <h4>Ice Open Network</h4>
-                <h4>CHEQD Network</h4>
-                <h4>zkRace</h4>
-              </div>
-              <div class="gain-amount">
-                <h4>
-                  $0.52
-                  <span class="green"
-                    ><i class="fa-solid fa-caret-up"></i> 1.2%</span
-                  >
-                </h4>
-                <h4>
-                  $54.23
-                  <span class="green"
-                    ><i class="fa-solid fa-caret-up"></i> 4.1%</span
-                  >
-                </h4>
-                <h4>
-                  $59.12
-                  <span class="green"
-                    ><i class="fa-solid fa-caret-up"></i> 2.3%</span
-                  >
-                </h4>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -132,7 +84,16 @@
           <th class="graph">Last 7 Days</th>
         </tr>
       </table>
-    </div>
+    </section>
+
+    <section class="news-section">
+      <div class="news-title-div">
+        <h2>News</h2>
+      </div>
+      <div class="news-tile-container"></div>
+    </section>
+
     <script src="script.js" type="module"></script>
+    <script src="news.js"></script>
   </body>
 </html>

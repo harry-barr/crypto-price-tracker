@@ -170,6 +170,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 0;
+  flex-wrap: wrap;
 }
 .main-content-title-div h1 {
   margin-top: 140px;
@@ -211,7 +212,7 @@ body {
 .trading-volume h3 {
   margin-top: 25px;
   margin-left: 12px;
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 .market-cap h4,
 .trading-volume h4 {
@@ -229,6 +230,11 @@ body {
   margin-left: 5px;
   font-size: 0.9rem;
 }
+.green.trading-volume,
+.red.trading-volume {
+  font-size: 1.5rem;
+  border: none;
+}
 
 .trending-div,
 .largest-gainers-div {
@@ -240,16 +246,16 @@ body {
   border: 3px solid rgba(128, 128, 128, 0.151);
   border-radius: 20px;
   height: 220px;
-  width: 430px;
+  width: 880px;
   margin-top: 30px;
 }
 .trending h4,
 .gainers h4 {
-  margin-left: 15px;
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 0;
-  font-size: 1.4rem;
-  color: rgba(0, 0, 0, 0.699);
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.607);
 }
 .trending .fa-fire {
   color: #ff6403;
@@ -286,7 +292,7 @@ body {
 .gain-container {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  margin-top: 8px;
   gap: 90px;
 }
 
@@ -386,14 +392,30 @@ body {
   font-weight: 700;
 }
 .crypto-img {
-  height: 20px;
-  width: 20px;
-  margin-left: 15px;
-  margin-bottom: 0;
+  height: 25px;
+  width: 25px;
+  margin-right: 17px;
 }
 .trending-img {
   height: 25px;
   width: 25px;
   margin-right: 5px;
   margin-top: 5px;
+}
+
+/*
+
+  NEWS SECTION STYLES
+
+*/
+
+.news-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.news-section .news-title-div h2 {
+  font-size: 2.5rem;
 }

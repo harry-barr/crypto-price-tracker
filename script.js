@@ -10,6 +10,7 @@ const searchInput = document.querySelector(".search-input");
 const searchBtn = document.querySelector("search-btn");
 const trendingContainer = document.querySelector(".trending-container");
 const marketCap = document.querySelector(".market-cap");
+const tradingVolume = document.querySelector(".trading-volume");
 
 /*
 
@@ -45,16 +46,25 @@ const marketPrices = async function () {
     const data = await API.get(
       `coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&x_cg_demo_api_key=${APIkey}`
     );
+
     data.forEach((coin) => {
       coinTable.insertAdjacentHTML(
         "beforeend",
         `
         <tr class="rendered-table">
           <td class="position-value">${coin.market_cap_rank}</td>
-          <td class="coin-value">${coin.name} <img class="crypto-img" src="${coin.image}"/></td>
-          <td class="price-value">$${coin.current_price}</td>
-          <td class="volume-value">$${coin.total_volume}</td>
-          <td class="market-cap-value">$${coin.market_cap}</td>
+          <td class="coin-value"><img class="crypto-img" src="${
+            coin.image
+          }"/> ${coin.name}</td>
+          <td class="price-value">$${coin.current_price.toLocaleString(
+            "en-US"
+          )}</td>
+          <td class="volume-value">$${coin.total_volume.toLocaleString(
+            "en-Us"
+          )}</td>
+          <td class="market-cap-value">$${coin.market_cap.toLocaleString(
+            "en-Us"
+          )}</td>
           <td class="graph-value">GRAPH GOES HERE</td>
         </tr>
         `
@@ -67,7 +77,7 @@ const marketPrices = async function () {
 
 /* 
 
-  TRENDING AND GAINERS FUNCTIONALITY
+  TRENDING FUNCTIONALITY
 
 */
 
@@ -99,26 +109,125 @@ const getTrending = async function () {
               <div class="trending-amount">
                 <h4>
                   $${coinData.coins[0].item.data.price.toFixed(7)}
-                  <span class="green"
-                    ><i class="fa-solid fa-caret-up"></i> ${coinData.coins[0].item.data.price_change_percentage_24h.usd.toFixed(
+                  <span class="${
+                    coinData.coins[0].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[0].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></i> 
+                    ${coinData.coins[0].item.data.price_change_percentage_24h.usd.toFixed(
                       2
                     )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[1].item.data.price.toFixed(2)}
-                  <span class="red"
-                    ><i class="fa-solid fa-caret-down"></i> ${coinData.coins[1].item.data.price_change_percentage_24h.usd.toFixed(
+                  $${coinData.coins[1].item.data.price.toFixed(7)}
+                  <span class="${
+                    coinData.coins[1].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[1].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></"></i> ${coinData.coins[1].item.data.price_change_percentage_24h.usd.toFixed(
+        2
+      )}%</span
+                  >
+                </h4>
+                <h4>
+                  $${coinData.coins[2].item.data.price.toFixed(7)}
+                  <span class="${
+                    coinData.coins[2].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid  ${
+                      coinData.coins[2].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }""></i> ${coinData.coins[2].item.data.price_change_percentage_24h.usd.toFixed(
+        2
+      )}%</span
+                  >
+                </h4>
+              </div>
+              <div class="trending-coins">
+                <h4><img src="${
+                  coinData.coins[3].item.small
+                }" class="trending-img"> ${coinData.coins[3].item.name}</h4>
+                <h4><img src="${
+                  coinData.coins[4].item.small
+                }" class="trending-img"> ${coinData.coins[4].item.name}</h4>
+                <h4><img src="${
+                  coinData.coins[5].item.small
+                }" class="trending-img"> ${coinData.coins[5].item.name}</h4>
+              </div>
+              <div class="trending-amount">
+                <h4>
+                  $${coinData.coins[3].item.data.price.toFixed(7)}
+                  <span class="${
+                    coinData.coins[3].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[3].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></i> 
+                    ${coinData.coins[3].item.data.price_change_percentage_24h.usd.toFixed(
                       2
                     )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[2].item.data.price.toFixed(2)}
-                  <span class="red"
-                    ><i class="fa-solid fa-caret-down"></i> ${coinData.coins[2].item.data.price_change_percentage_24h.usd.toFixed(
-                      2
-                    )}%</span
+                  $${coinData.coins[4].item.data.price.toFixed(7)}
+                  <span class="${
+                    coinData.coins[4].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[4].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></"></i> ${coinData.coins[4].item.data.price_change_percentage_24h.usd.toFixed(
+        2
+      )}%</span
+                  >
+                </h4>
+                <h4>
+                  $${coinData.coins[5].item.data.price.toFixed(7)}
+                  <span class="${
+                    coinData.coins[5].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid  ${
+                      coinData.coins[5].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }""></i> ${coinData.coins[5].item.data.price_change_percentage_24h.usd.toFixed(
+        2
+      )}%</span
                   >
                 </h4>
               </div>`
@@ -143,6 +252,25 @@ const getActiveCryptocurrencies = async function () {
       "beforeend",
       `<h3>${data.data.active_cryptocurrencies}</h3>
       <h4>Total Number of Active Cryptocurrencies</h4>`
+    );
+    tradingVolume.insertAdjacentHTML(
+      "beforeend",
+      `<h3>
+              <span class="${
+                data.data.market_cap_change_percentage_24h_usd < 0
+                  ? "red"
+                  : "green"
+              } trading-volume"
+                ><i class="fa-solid ${
+                  data.data.market_cap_change_percentage_24h_usd < 0
+                    ? "fa-caret-down"
+                    : "fa-caret-up"
+                }"></i> ${data.data.market_cap_change_percentage_24h_usd.toFixed(
+        2
+      )}%</span
+              >
+            </h3>
+            <h4>Market Cap 24h Change</h4>`
     );
   } catch (error) {
     console.error(error);
