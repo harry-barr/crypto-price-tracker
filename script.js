@@ -11,7 +11,7 @@ const searchBtn = document.querySelector("search-btn");
 const trendingContainer = document.querySelector(".trending-container");
 const marketCap = document.querySelector(".market-cap");
 const tradingVolume = document.querySelector(".trading-volume");
-
+const titleDiv = document.querySelector(".title-and-search-div");
 /*
 
   TITLE SCROLL FUNCTIONALITY
@@ -34,6 +34,10 @@ window.addEventListener("scroll", () => {
     bitcoinIcon.style.animation = "2s rotate ease-in-out 1";
   }
 });
+
+const refreshPage = function () {
+  location.reload();
+};
 
 /* 
 
@@ -279,9 +283,20 @@ const getActiveCryptocurrencies = async function () {
 
 /* 
 
+
+  SEARCH FOR CRYPTO FUNCTIONALITY
+
+
+*/
+
+const searchForCrypto = async function () {};
+
+/* 
+
   WINDOW EVENT LISTENERS
 
 */
 window.addEventListener("load", getActiveCryptocurrencies);
 window.addEventListener("load", getTrending);
 window.addEventListener("load", marketPrices);
+titleDiv.addEventListener("click", refreshPage);
