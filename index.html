@@ -38,7 +38,7 @@
             <option value=""></option>
             <option value=""></option>
           </select>
-          <button class="nav-btn">News</button>
+          <button class="nav-btn" id="news">News</button>
           <button class="nav-btn">
             Favourites <i class="fa-solid fa-star"></i>
           </button>
@@ -46,15 +46,22 @@
       </nav>
       <form class="search-div" id="search-form">
         <input type="text" class="search-input" placeholder="search..." />
-        <button class="search-btn">
+        <button class="search-btn" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
     </header>
 
+
+
+
     <section class="main-content-title-div">
+      <div class="title-and-search-crypto-container">
+        <div>
       <h1>Cryptocurrency Prices by Market Cap</h1>
       <p>Changes in the last 24h</p>
+      </div>  
+      <div class="search-crypto-container"></div>
     </div>
     <div class="main-content-container">
       <div class="leaderboard-container">
@@ -62,6 +69,7 @@
           <div class="market-cap"></div>
           <div class="trading-volume"></div>
         </div>
+        
         <div class="trending-div">
           <div class="trending">
             <h4>

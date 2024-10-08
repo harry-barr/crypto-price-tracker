@@ -10,6 +10,9 @@ body {
   color: rgba(0, 0, 0, 0.699);
   overflow-x: hidden;
 }
+html {
+  scroll-padding-top: 100px; /* Adjust as needed */
+}
 
 /*
 
@@ -37,6 +40,7 @@ body {
   cursor: pointer;
   margin-right: 20px;
   font-size: 40px;
+  margin-left: 10px;
 }
 
 #header .search-input {
@@ -284,7 +288,7 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 8px;
-  gap: 90px;
+  gap: 70px;
 }
 
 .trending-amount {
@@ -437,7 +441,7 @@ body {
 .news-tile-container .main-news .main-news-right {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #f7eaea, #ffe8e8); /* Softer gradient */
+  background: linear-gradient(135deg, #fefefe, #f7e5e5); /* Softer gradient */
   height: 600px;
   width: 550px;
   margin-top: 20px;
@@ -523,4 +527,43 @@ footer hr {
   background-color: rgba(0, 0, 0, 0.185);
   border: none;
   border-radius: 20px;
+}
+
+/* 
+
+  SEARCH CRYPTO STYLES
+
+*/
+
+.title-and-search-crypto-container {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+}
+.search-crypto-img {
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  top: 30px;
+  left: 50px;
+}
+
+.search-crypto-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 600px;
+  height: 200px;
+}
+
+.search-crypto-desc {
+  position: absolute;
+  bottom: 40px;
+  left: 240px;
+  margin-left: 0 !important;
+}
+.search-crypto-desc h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }

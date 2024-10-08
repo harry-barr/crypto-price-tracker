@@ -7,11 +7,17 @@ const title = document.querySelector(".title");
 const bitcoinIcon = document.querySelector(".fa-bitcoin");
 const maxScroll = 130;
 const searchInput = document.querySelector(".search-input");
-const searchBtn = document.querySelector("search-btn");
+const searchForm = document.querySelector("#search-form");
 const trendingContainer = document.querySelector(".trending-container");
 const marketCap = document.querySelector(".market-cap");
 const tradingVolume = document.querySelector(".trading-volume");
 const titleDiv = document.querySelector(".title-and-search-div");
+const searchCryptoContainer = document.querySelector(
+  ".search-crypto-container"
+);
+const newsBtn = document.querySelector("#news");
+const newsSection = document.querySelector(".news-section");
+
 /*
 
   TITLE SCROLL FUNCTIONALITY
@@ -37,6 +43,17 @@ window.addEventListener("scroll", () => {
 
 const refreshPage = function () {
   location.reload();
+};
+
+const scrollDown = function () {
+  newsSection.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+const scrollHome = function () {
+  titleDiv.scrollIntoView({
+    behavior: "smooth",
+  });
 };
 
 /* 
@@ -289,14 +306,43 @@ const getActiveCryptocurrencies = async function () {
 
 */
 
-const searchForCrypto = async function () {};
+const searchForCrypto = async function (e) {
+  e.preventDefault();
+  searchCryptoContainer.innerHTML = "";
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      "x-cg-demo-api-key": "CG-zbZjxov9NgfktzCwyLDqU4sd",
+    },
+  };
+  try {
+    const data = await API.get(`search?query=${searchInput.value}`, options);
+    searchInput.value = "";
+    console.log(data);
+    searchCryptoContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="search-crypto-img">
+      <img src="${data.coins[0].large}" class="search-crypto-img"/></div>
+      <div class="search-crypto-desc">
+      <h1>${data.coins[0].name} [ ${data.coins[0].symbol} ]</h1>
+      <h2>Market Cap Rank: ${data.coins[0].market_cap_rank}</h2>
+      </div>`
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 /* 
 
-  WINDOW EVENT LISTENERS
+   EVENT LISTENERS
 
 */
 window.addEventListener("load", getActiveCryptocurrencies);
 window.addEventListener("load", getTrending);
 window.addEventListener("load", marketPrices);
 titleDiv.addEventListener("click", refreshPage);
+searchForm.addEventListener("submit", searchForCrypto);
+newsBtn.addEventListener("click", scrollDown);
