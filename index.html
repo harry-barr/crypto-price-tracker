@@ -55,7 +55,7 @@
 
 
 
-    <section class="main-content-title-div">
+    <div class="main-content-title-div">
       <div class="title-and-search-crypto-container">
         <div>
       <h1>Cryptocurrency Prices by Market Cap</h1>
@@ -63,7 +63,8 @@
       </div>  
       <div class="search-crypto-container"></div>
     </div>
-    <div class="main-content-container">
+    </div>
+    <section class="main-content-container">
       <div class="leaderboard-container">
         <div class="div-for-market-cap-and-trading-volume">
           <div class="market-cap"></div>
@@ -83,14 +84,16 @@
     </div>
     <div class="table-container">
       <table class="coin-table">
+        <thead>
         <tr>
-          <th class="position">#</th>
-          <th class="coin">Coin</th>
-          <th class="price">Price</th>
-          <th class="volume">Total Volume</th>
-          <th class="market-cap">Market Cap</th>
-          <th class="graph">Last 7 Days</th>
+          <th class="position"><button class="sort"></button> #</th>
+          <th class="coin"><button class="sort"></button> Coin</th>
+          <th class="price"><button class="sort"></button> Price</th>
+          <th class="volume"><button class="sort"></button> Total Volume</th>
+          <th class="market-cap"><button class="sort"></button> Market Cap</th>
+          <th class="graph">24h Line</th>
         </tr>
+        </thead>
       </table>
     </section>
 
@@ -106,5 +109,6 @@
 
     <script src="script.js" type="module"></script>
     <script src="news.js" type="module"></script>
+    <script src="sort.js" type="module"></script>
   </body>
 </html>

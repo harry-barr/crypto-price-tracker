@@ -2,7 +2,7 @@ import FetchWrapper from "./fetch-wrapper.js";
 const API = new FetchWrapper("https://api.coingecko.com/api/v3/");
 const APIkey = "CG-zbZjxov9NgfktzCwyLDqU4sd";
 const bitcoinPrice = document.querySelector(".price-value");
-const coinTable = document.querySelector(".coin-table");
+export const coinTable = document.querySelector(".coin-table");
 const title = document.querySelector(".title");
 const bitcoinIcon = document.querySelector(".fa-bitcoin");
 const maxScroll = 130;
@@ -41,17 +41,8 @@ window.addEventListener("scroll", () => {
   }
 });
 
-const refreshPage = function () {
-  location.reload();
-};
-
 const scrollDown = function () {
   newsSection.scrollIntoView({
-    behavior: "smooth",
-  });
-};
-const scrollHome = function () {
-  titleDiv.scrollIntoView({
     behavior: "smooth",
   });
 };
@@ -72,24 +63,78 @@ const marketPrices = async function () {
       coinTable.insertAdjacentHTML(
         "beforeend",
         `
-        <tr class="rendered-table">
-          <td class="position-value">${coin.market_cap_rank}</td>
-          <td class="coin-value"><img class="crypto-img" src="${
-            coin.image
-          }"/> ${coin.name}</td>
-          <td class="price-value">$${coin.current_price.toLocaleString(
-            "en-US"
-          )}</td>
-          <td class="volume-value">$${coin.total_volume.toLocaleString(
-            "en-Us"
-          )}</td>
-          <td class="market-cap-value">$${coin.market_cap.toLocaleString(
-            "en-Us"
-          )}</td>
-          <td class="graph-value">GRAPH GOES HERE</td>
-        </tr>
+        <tbody>
+          <tr class="rendered-table">
+            <td class="position-value">${coin.market_cap_rank}</td>
+            <td class="coin-value"><img class="crypto-img" src="${
+              coin.image
+            }"/> ${coin.name}</td>
+            <td class="price-value">$${coin.current_price.toLocaleString(
+              "en-US"
+            )}</td>
+            <td class="volume-value">$${coin.total_volume.toLocaleString(
+              "en-US"
+            )}</td>
+            <td class="market-cap-value">$${coin.market_cap.toLocaleString(
+              "en-US"
+            )}</td>
+            <td class="graph-value">GRAPH GOES HERE</td>
+          </tr>
+        </tbody>
         `
       );
+    });
+
+    function sortTableByColumn(table, column, asc = true) {
+      const dirModifier = asc ? 1 : -1;
+      const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+      const sortedRows = rows.sort((a, b) => {
+        const aColText = a
+          .querySelector(`td:nth-child(${column + 1})`)
+          .textContent.trim();
+        const bColText = b
+          .querySelector(`td:nth-child(${column + 1})`)
+          .textContent.trim();
+
+        const aValue = !isNaN(aColText.replace(/[^0-9.-]+/g, ""))
+          ? parseFloat(aColText.replace(/[^0-9.-]+/g, ""))
+          : aColText;
+        const bValue = !isNaN(bColText.replace(/[^0-9.-]+/g, ""))
+          ? parseFloat(bColText.replace(/[^0-9.-]+/g, ""))
+          : bColText;
+
+        return aValue > bValue ? dirModifier : -dirModifier;
+      });
+
+      // Clear and re-append sorted rows
+      table.querySelector("tbody").innerHTML = "";
+      sortedRows.forEach((row) =>
+        table.querySelector("tbody").appendChild(row)
+      );
+    }
+
+    // Event listener for sorting
+    const sortBtns = document.querySelectorAll(".sort");
+    sortBtns.forEach((btn, index) => {
+      let asc = true;
+
+      // Create a span for the icon to toggle separately
+      const icon = document.createElement("span");
+      icon.classList.add("fa-solid", "fa-caret-down");
+      btn.appendChild(icon);
+
+      btn.addEventListener("click", () => {
+        sortTableByColumn(coinTable, index, asc);
+        asc = !asc; // Toggle sort order
+
+        // Toggle the icon class based on the sort order
+        if (asc) {
+          icon.classList.replace("fa-caret-down", "fa-caret-up");
+        } else {
+          icon.classList.replace("fa-caret-up", "fa-caret-down");
+        }
+      });
     });
   } catch (error) {
     console.error(error);
@@ -113,7 +158,6 @@ const getTrending = async function () {
     };
     const data = await API.get(`search/trending`, options);
     const coinData = data;
-    console.log(coinData.coins[0].item.data.price_change_percentage_24h.usd);
     trendingContainer.insertAdjacentHTML(
       "beforeend",
       `<div class="trending-coins">
@@ -268,7 +312,6 @@ const getActiveCryptocurrencies = async function () {
       },
     };
     const data = await API.get("global", options);
-    console.log(data.data);
     marketCap.insertAdjacentHTML(
       "beforeend",
       `<h3>${data.data.active_cryptocurrencies}</h3>
@@ -317,9 +360,14 @@ const searchForCrypto = async function (e) {
     },
   };
   try {
-    const data = await API.get(`search?query=${searchInput.value}`, options);
+    const search = searchInput.value.toLowerCase();
+    const data = await API.get(`search?query=${search}`, options);
+    const priceSearch = data.coins[0].id;
+    const priceData = await API.get(
+      `simple/price?ids=${priceSearch}&vs_currencies=usd`,
+      options
+    );
     searchInput.value = "";
-    console.log(data);
     searchCryptoContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -328,6 +376,7 @@ const searchForCrypto = async function (e) {
       <div class="search-crypto-desc">
       <h1>${data.coins[0].name} [ ${data.coins[0].symbol} ]</h1>
       <h2>Market Cap Rank: ${data.coins[0].market_cap_rank}</h2>
+      <h2>$${priceData[priceSearch]?.usd.toLocaleString() ?? ""}</h2>
       </div>`
     );
   } catch (error) {
@@ -343,6 +392,11 @@ const searchForCrypto = async function (e) {
 window.addEventListener("load", getActiveCryptocurrencies);
 window.addEventListener("load", getTrending);
 window.addEventListener("load", marketPrices);
-titleDiv.addEventListener("click", refreshPage);
+titleDiv.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Makes the scroll smooth
+  });
+});
 searchForm.addEventListener("submit", searchForCrypto);
 newsBtn.addEventListener("click", scrollDown);
