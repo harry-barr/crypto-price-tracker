@@ -16,6 +16,8 @@ const searchCryptoContainer = document.querySelector(
 );
 const newsBtn = document.querySelector("#news");
 const newsSection = document.querySelector(".news-section");
+const cryptocurrenciesBtn = document.querySelector("#cryptocurrencies");
+const tableContainer = document.querySelector(".table-container");
 
 export const options = {
   method: "GET",
@@ -47,8 +49,13 @@ window.addEventListener("scroll", () => {
   }
 });
 
-const scrollDown = function () {
+const scrollDownToNews = function () {
   newsSection.scrollIntoView({
+    behavior: "smooth",
+  });
+};
+const scrollDownToCrypto = function () {
+  tableContainer.scrollIntoView({
     behavior: "smooth",
   });
 };
@@ -378,9 +385,14 @@ const searchForCrypto = async function (e) {
    EVENT LISTENERS
 
 */
-window.addEventListener("load", getActiveCryptocurrencies);
-window.addEventListener("load", getTrending);
-window.addEventListener("load", marketPrices);
+
+const holderFunction = function () {
+  getActiveCryptocurrencies();
+  getTrending();
+  marketPrices();
+};
+
+window.addEventListener("load", holderFunction);
 titleDiv.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
@@ -388,7 +400,8 @@ titleDiv.addEventListener("click", () => {
   });
 });
 searchForm.addEventListener("submit", searchForCrypto);
-newsBtn.addEventListener("click", scrollDown);
+newsBtn.addEventListener("click", scrollDownToNews);
+cryptocurrenciesBtn.addEventListener("click", scrollDownToCrypto);
 
 /* 
 

@@ -26,7 +26,9 @@
       </div>
       <nav class="nav-bar">
         <div class="tabs">
-          <button class="nav-btn">Cryptocurrencies</button>
+          <button class="nav-btn" id="cryptocurrencies">
+            Cryptocurrencies
+          </button>
           <button class="nav-btn" id="exchanges">Exchanges</button>
           <button class="nav-btn" id="news">News</button>
           <button class="nav-btn">
@@ -42,65 +44,78 @@
       </form>
     </header>
 
+    <section class="cryptocurrency-exchanges-section">
+      <div class="links">
+        <ul>
+          <li><a>Binance</a></li>
+          <li><a>Coinbase</a></li>
+          <li><a>Crypto.com</a></li>
+        </ul>
+      </div>
+    </section>
 
-
-
-    <div class="main-content-title-div">
-      <div class="title-and-search-crypto-container">
-        <div>
-      <h1>Cryptocurrency Prices by Market Cap</h1>
-      <p>Changes in the last 24h</p>
-      </div>  
-      <div class="search-crypto-container"></div>
-    </div>
-    </div>
-    <section class="main-content-container">
-      <div class="leaderboard-container">
-        <div class="div-for-market-cap-and-trading-volume">
-          <div class="market-cap"></div>
-          <div class="trading-volume"></div>
+    <div class="main-section">
+      <div class="main-content-title-div">
+        <div class="title-and-search-crypto-container">
+          <div>
+            <h1>Cryptocurrency Prices by Market Cap</h1>
+            <p>Changes in the last 24h</p>
+          </div>
+          <div class="search-crypto-container"></div>
         </div>
-        
-        <div class="trending-div">
-          <div class="trending">
-            <h4>
-              Trending<span class="space"></span>
-              <i class="fa-solid fa-fire"></i>
-            </h4>
-            <div class="trending-container"></div>
+      </div>
+      <section class="main-content-container">
+        <div class="leaderboard-container">
+          <div class="div-for-market-cap-and-trading-volume">
+            <div class="market-cap"></div>
+            <div class="trading-volume"></div>
+          </div>
+
+          <div class="trending-div">
+            <div class="trending">
+              <h4>
+                Trending<span class="space"></span>
+                <i class="fa-solid fa-fire"></i>
+              </h4>
+              <div class="trending-container"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="table-container">
-      <table class="coin-table">
-        <thead>
-        <tr>
-          <th class="position"><button class="sort"></button> #</th>
-          <th class="coin"><button class="sort"></button> Coin</th>
-          <th class="price"><button class="sort"></button> Price</th>
-          <th class="volume"><button class="sort"></button> Total Volume</th>
-          <th class="market-cap"><button class="sort"></button> Market Cap</th>
-          <th class="graph">7d Line</th>
-        </tr>
-        </thead>
-      </table>
-    </section>
+        <div class="table-container">
+          <table class="coin-table">
+            <thead>
+              <tr>
+                <th class="position"><button class="sort"></button> #</th>
+                <th class="coin"><button class="sort"></button> Coin</th>
+                <th class="price"><button class="sort"></button> Price</th>
+                <th class="volume">
+                  <button class="sort"></button> Total Volume
+                </th>
+                <th class="market-cap">
+                  <button class="sort"></button> Market Cap
+                </th>
+                <th class="graph">7d Line</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </section>
 
-    <section class="news-section">
-      <div class="news-title-div">
-        <h2>News</h2>
-      </div>
-      <div class="news-tile-container"></div>
-    </section>
+      <section class="news-section">
+        <div class="news-title-div">
+          <h2>News</h2>
+        </div>
+        <div class="news-tile-container"></div>
+      </section>
+    </div>
     <footer>
-      <hr>
+      <hr />
     </footer>
 
     <script src="script.js" type="module"></script>
     <script src="news.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" type="module"></script>
     <script src="graphs.js" type="module"></script>
-    
+    <script src="exchanges.js" type="module"></script>
   </body>
 </html>
