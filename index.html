@@ -26,18 +26,8 @@
       </div>
       <nav class="nav-bar">
         <div class="tabs">
-          <select class="nav-btn">
-            <option value="">Cryptocurrencies</option>
-            <option value="">By market cap</option>
-            <option value="">Categories</option>
-            <option value="">Popular</option>
-          </select>
-          <select class="nav-btn">
-            <option value="">Exchanges</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-          </select>
+          <button class="nav-btn">Cryptocurrencies</button>
+          <button class="nav-btn" id="exchanges">Exchanges</button>
           <button class="nav-btn" id="news">News</button>
           <button class="nav-btn">
             Favourites <i class="fa-solid fa-star"></i>
@@ -91,7 +81,7 @@
           <th class="price"><button class="sort"></button> Price</th>
           <th class="volume"><button class="sort"></button> Total Volume</th>
           <th class="market-cap"><button class="sort"></button> Market Cap</th>
-          <th class="graph">24h Line</th>
+          <th class="graph">7d Line</th>
         </tr>
         </thead>
       </table>
@@ -109,6 +99,8 @@
 
     <script src="script.js" type="module"></script>
     <script src="news.js" type="module"></script>
-    <script src="sort.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" type="module"></script>
+    <script src="graphs.js" type="module"></script>
+    
   </body>
 </html>

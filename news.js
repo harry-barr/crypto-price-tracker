@@ -7,7 +7,6 @@ const getNews = async function () {
     const data = await API.get(
       `crypto&apiKey=de15e0d6542040ffaaaebe4f8d383524`
     );
-    console.log(data);
     newsContainer.innerHTML = "";
     newsContainer.insertAdjacentHTML(
       "beforeend",

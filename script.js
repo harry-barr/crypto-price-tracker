@@ -1,8 +1,7 @@
 import FetchWrapper from "./fetch-wrapper.js";
-const API = new FetchWrapper("https://api.coingecko.com/api/v3/");
-const APIkey = "CG-zbZjxov9NgfktzCwyLDqU4sd";
-const bitcoinPrice = document.querySelector(".price-value");
-export const coinTable = document.querySelector(".coin-table");
+export const API = new FetchWrapper("https://api.coingecko.com/api/v3/");
+export const APIkey = "CG-zbZjxov9NgfktzCwyLDqU4sd";
+const coinTable = document.querySelector(".coin-table");
 const title = document.querySelector(".title");
 const bitcoinIcon = document.querySelector(".fa-bitcoin");
 const maxScroll = 130;
@@ -18,6 +17,13 @@ const searchCryptoContainer = document.querySelector(
 const newsBtn = document.querySelector("#news");
 const newsSection = document.querySelector(".news-section");
 
+export const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    "x-cg-demo-api-key": "CG-zbZjxov9NgfktzCwyLDqU4sd",
+  },
+};
 /*
 
   TITLE SCROLL FUNCTIONALITY
@@ -58,8 +64,8 @@ const marketPrices = async function () {
     const data = await API.get(
       `coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&x_cg_demo_api_key=${APIkey}`
     );
-
-    data.forEach((coin) => {
+    for (let index = 0; index < data.length; index++) {
+      const coin = data[index];
       coinTable.insertAdjacentHTML(
         "beforeend",
         `
@@ -78,68 +84,72 @@ const marketPrices = async function () {
             <td class="market-cap-value">$${coin.market_cap.toLocaleString(
               "en-US"
             )}</td>
-            <td class="graph-value">GRAPH GOES HERE</td>
+            <td class="graph-value"><canvas class="coin-line-chart" id="chart-${index}"></canvas></td>
           </tr>
         </tbody>
         `
       );
-    });
 
-    function sortTableByColumn(table, column, asc = true) {
-      const dirModifier = asc ? 1 : -1;
-      const rows = Array.from(table.querySelectorAll("tbody tr"));
-
-      const sortedRows = rows.sort((a, b) => {
-        const aColText = a
-          .querySelector(`td:nth-child(${column + 1})`)
-          .textContent.trim();
-        const bColText = b
-          .querySelector(`td:nth-child(${column + 1})`)
-          .textContent.trim();
-
-        const aValue = !isNaN(aColText.replace(/[^0-9.-]+/g, ""))
-          ? parseFloat(aColText.replace(/[^0-9.-]+/g, ""))
-          : aColText;
-        const bValue = !isNaN(bColText.replace(/[^0-9.-]+/g, ""))
-          ? parseFloat(bColText.replace(/[^0-9.-]+/g, ""))
-          : bColText;
-
-        return aValue > bValue ? dirModifier : -dirModifier;
-      });
-
-      // Clear and re-append sorted rows
-      table.querySelector("tbody").innerHTML = "";
-      sortedRows.forEach((row) =>
-        table.querySelector("tbody").appendChild(row)
-      );
+      await new Promise((resolve) => setTimeout(resolve, 100)); // 500 ms delay
+      await getChartData(coin.id, index); // Call the function to load the chart data
     }
-
-    // Event listener for sorting
-    const sortBtns = document.querySelectorAll(".sort");
-    sortBtns.forEach((btn, index) => {
-      let asc = true;
-
-      // Create a span for the icon to toggle separately
-      const icon = document.createElement("span");
-      icon.classList.add("fa-solid", "fa-caret-down");
-      btn.appendChild(icon);
-
-      btn.addEventListener("click", () => {
-        sortTableByColumn(coinTable, index, asc);
-        asc = !asc; // Toggle sort order
-
-        // Toggle the icon class based on the sort order
-        if (asc) {
-          icon.classList.replace("fa-caret-down", "fa-caret-up");
-        } else {
-          icon.classList.replace("fa-caret-up", "fa-caret-down");
-        }
-      });
-    });
+    setupSortFunctionality();
   } catch (error) {
     console.error(error);
   }
 };
+
+function setupSortFunctionality() {
+  const sortBtns = document.querySelectorAll(".sort");
+  sortBtns.forEach((btn, index) => {
+    let asc = true;
+
+    // Create a span for the icon to toggle separately
+    const icon = document.createElement("span");
+    icon.classList.add("fa-solid", "fa-caret-down");
+    btn.appendChild(icon);
+
+    btn.addEventListener("click", () => {
+      sortTableByColumn(coinTable, index, asc);
+      asc = !asc; // Toggle sort order
+
+      // Toggle the icon class based on the sort order
+      if (asc) {
+        icon.classList.replace("fa-caret-down", "fa-caret-up");
+      } else {
+        icon.classList.replace("fa-caret-up", "fa-caret-down");
+      }
+    });
+  });
+}
+
+// Sorting function
+function sortTableByColumn(table, column, asc = true) {
+  const dirModifier = asc ? 1 : -1;
+  const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+  const sortedRows = rows.sort((a, b) => {
+    const aColText = a
+      .querySelector(`td:nth-child(${column + 1})`)
+      .textContent.trim();
+    const bColText = b
+      .querySelector(`td:nth-child(${column + 1})`)
+      .textContent.trim();
+
+    const aValue = !isNaN(aColText.replace(/[^0-9.-]+/g, ""))
+      ? parseFloat(aColText.replace(/[^0-9.-]+/g, ""))
+      : aColText;
+    const bValue = !isNaN(bColText.replace(/[^0-9.-]+/g, ""))
+      ? parseFloat(bColText.replace(/[^0-9.-]+/g, ""))
+      : bColText;
+
+    return aValue > bValue ? dirModifier : -dirModifier;
+  });
+
+  // Clear and re-append sorted rows
+  table.querySelector("tbody").innerHTML = "";
+  sortedRows.forEach((row) => table.querySelector("tbody").appendChild(row));
+}
 
 /* 
 
@@ -149,13 +159,6 @@ const marketPrices = async function () {
 
 const getTrending = async function () {
   try {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        "x-cg-demo-api-key": "CG-zbZjxov9NgfktzCwyLDqU4sd",
-      },
-    };
     const data = await API.get(`search/trending`, options);
     const coinData = data;
     trendingContainer.insertAdjacentHTML(
@@ -304,13 +307,6 @@ const getTrending = async function () {
 
 const getActiveCryptocurrencies = async function () {
   try {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        "x-cg-demo-api-key": "CG-zbZjxov9NgfktzCwyLDqU4sd",
-      },
-    };
     const data = await API.get("global", options);
     marketCap.insertAdjacentHTML(
       "beforeend",
@@ -352,13 +348,6 @@ const getActiveCryptocurrencies = async function () {
 const searchForCrypto = async function (e) {
   e.preventDefault();
   searchCryptoContainer.innerHTML = "";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      "x-cg-demo-api-key": "CG-zbZjxov9NgfktzCwyLDqU4sd",
-    },
-  };
   try {
     const search = searchInput.value.toLowerCase();
     const data = await API.get(`search?query=${search}`, options);
@@ -400,3 +389,86 @@ titleDiv.addEventListener("click", () => {
 });
 searchForm.addEventListener("submit", searchForCrypto);
 newsBtn.addEventListener("click", scrollDown);
+
+/* 
+
+  CHART FUNCTION 
+
+*/
+
+const getChartData = async function (coin, index) {
+  try {
+    const data = await API.get(
+      `coins/${coin}/market_chart?vs_currency=usd&days=7`,
+      options
+    );
+    console.log(data);
+
+    const prices = data.prices.map((price) => price[1]); // Extract price values
+    const minPrice = Math.min(...prices).toLocaleString("en-US");
+    const endPrice = Number(prices[prices.length - 1]);
+    const startPrice = Number(prices[0]);
+    console.log(minPrice);
+    const labels = data.prices.map((price) =>
+      new Date(price[0]).toLocaleDateString()
+    ); // Extract and format dates
+
+    const canvas = document.getElementById(`chart-${index}`); // Select all canvas elements
+    const ctx = canvas.getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: Array(labels.length).fill(""), // Set formatted dates as labels
+        datasets: [
+          {
+            data: prices, // Set prices as data points
+            fill: false,
+            borderColor: `${startPrice - endPrice > 0 ? "red" : "green"}`,
+            tension: 0.1,
+            pointRadius: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true, // Make the chart responsive
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            display: false,
+            title: {
+              display: false,
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            display: false,
+            title: {
+              display: false,
+              // Y-axis title
+            },
+            beginAtZero: false,
+            min: minPrice,
+            ticks: {
+              display: false,
+            },
+            grid: {
+              display: false,
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: false,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -258,8 +258,8 @@ html {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 0px;
-  font-size: 1.5rem;
-  color: rgba(0, 0, 0, 0.607);
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.651);
 }
 .trending .fa-fire {
   color: #ff6403;
@@ -336,8 +336,12 @@ html {
 .coin-table .coin,
 .coin-table .price,
 .coin-table .volume,
-.coin-table .market-cap {
-  border-right: 1px solid rgba(128, 128, 128, 0.151);
+.coin-table .market-cap,
+.coin-table .graph {
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.151);
 }
 
 .coin-table tr td {
@@ -348,7 +352,7 @@ html {
   width: 50px;
 }
 .coin-table .coin {
-  width: 350px;
+  width: 330px;
 }
 .coin-table .price {
   width: 120px;
@@ -377,7 +381,7 @@ html {
 .coin-table .price-value,
 .coin-table .volume-value,
 .coin-table .market-cap-value {
-  border-right: 1px solid rgba(128, 128, 128, 0.151);
+  border-right: 2px solid rgba(128, 128, 128, 0.151);
   border-bottom: 1px solid rgba(128, 128, 128, 0.151);
 }
 .coin-table .graph-value {
@@ -400,7 +404,7 @@ html {
 }
 
 th:hover {
-  background-color: rgb(234, 229, 229);
+  background-color: rgb(231, 234, 229);
   border-color: black;
 }
 
@@ -410,6 +414,15 @@ th:hover {
   background: none;
   border: none;
 }
+
+.coin-line-chart {
+  height: 80px;
+  width: 200px;
+  background-color: none;
+  margin: 0;
+  margin-top: px;
+}
+
 /*
 
   NEWS SECTION STYLES
