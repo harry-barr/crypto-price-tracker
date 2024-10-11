@@ -24,6 +24,7 @@ html {
   margin-top: 0px;
   margin-left: 0px;
   margin-bottom: 0px;
+  gap: 100px;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -41,15 +42,18 @@ html {
   margin-right: 20px;
   font-size: 40px;
 }
+.title-and-search-div {
+  width: 400px;
+}
 
 #header .search-input {
   padding: 10px;
-  width: 10vw;
+  width: 10.5vw;
   border-radius: 10px;
   margin-top: 0px;
   border: none;
   cursor: pointer;
-  background: #41b0f540;
+  background: #41b0f529;
   color: rgba(0, 0, 0, 0.742);
   font-weight: bold;
   transition: box-shadow 0.3s ease;
@@ -61,12 +65,12 @@ html {
 }
 
 #header .search-btn {
-  padding: 9px;
-  border-radius: 1000px;
+  padding: 10.5px;
+  border-radius: 10px;
   border: none;
   position: relative;
   margin-top: 5px;
-  top: -2px;
+  top: -4px;
   left: 135px;
   cursor: pointer;
   display: flex;
@@ -202,7 +206,7 @@ html {
   flex-direction: column;
   gap: 5px;
   margin-top: 30px;
-  margin-left: 20px;
+  margin-left: 45px;
 }
 .div-for-market-cap-and-trading-volume .market-cap,
 .div-for-market-cap-and-trading-volume .trading-volume {
@@ -250,7 +254,7 @@ html {
   border: 2px solid rgba(128, 128, 128, 0.151);
   border-radius: 20px;
   height: 220px;
-  width: 870px;
+  width: 1150px;
   margin-top: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.103);
 }
@@ -268,12 +272,12 @@ html {
 }
 
 .trending-coins {
-  margin-bottom: 20px;
-  margin-left: 15px;
+  margin-bottom: 25px;
+  margin-left: 25px;
 }
 
 .trending-coins h4 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: rgba(0, 0, 0, 0.594);
 }
 
@@ -288,7 +292,7 @@ html {
   display: flex;
   flex-direction: row;
   margin-top: 8px;
-  gap: 70px;
+  gap: 30px;
 }
 
 .trending-amount {
@@ -314,6 +318,7 @@ html {
 .coin-table {
   background: none;
   border-radius: 10px;
+  width: 100%;
   border: 2px solid rgba(128, 128, 128, 0.151);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.103);
 }
@@ -352,19 +357,19 @@ html {
   width: 50px;
 }
 .coin-table .coin {
-  width: 330px;
+  width: 450px;
 }
 .coin-table .price {
-  width: 120px;
+  width: 170px;
 }
 .coin-table .volume {
-  width: 200px;
+  width: 240px;
 }
 .coin-table .market-cap {
-  width: 250px;
+  width: 290px;
 }
 .coin-table .graph {
-  width: 250px;
+  width: 290px;
 }
 .coin-table .position-value,
 .coin-table .coin-value,
@@ -416,8 +421,8 @@ th:hover {
 }
 
 .coin-line-chart {
-  height: 80px;
-  width: 200px;
+  height: 80px !important;
+  width: 255px !important;
   background-color: none;
   margin: 0;
   margin-top: px;
@@ -562,7 +567,7 @@ footer hr {
 .title-and-search-crypto-container {
   display: flex;
   flex-direction: row;
-  gap: 120px;
+  gap: 400px;
 }
 .search-crypto-img {
   height: 120px;
@@ -603,9 +608,42 @@ footer hr {
 */
 
 .cryptocurrency-exchanges-section {
-  display: flex;
+  display: none;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   margin-top: 40px;
   margin-bottom: 40px;
+  margin-left: 80px;
+}
+.title-and-links h1 {
+  font-size: 2.8rem;
+  margin-bottom: 100px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.562);
+  border-radius: 3px;
+  padding: 15px;
+}
+.title-and-links ul li {
+  margin-top: 50px;
+  font-size: 2.4rem;
+  position: relative;
+}
+.title-and-links ul {
+  list-style-type: none;
+  margin-bottom: 300px;
+}
+.title-and-links ul a {
+  color: rgba(0, 0, 0, 0.667);
+  font-weight: 700;
+}
+.title-and-links ul a:hover {
+  text-decoration: underline;
+}
+.exchange-img {
+  height: 70px;
+  width: 70px;
+  margin-left: 15px;
+  border-radius: 1000px;
+  position: absolute;
+  top: -20px;
+  left: 230px;
 }

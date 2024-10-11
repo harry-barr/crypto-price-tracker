@@ -48,13 +48,47 @@ window.addEventListener("scroll", () => {
     bitcoinIcon.style.animation = "2s rotate ease-in-out 1";
   }
 });
+const exchangeBtn = document.querySelector("#exchanges");
+const mainSection = document.querySelector(".main-section");
+const exchangeSection = document.querySelector(
+  ".cryptocurrency-exchanges-section"
+);
 
+let mainContentIsShowing = true; // Initialize as false
+
+exchangeBtn.addEventListener("click", toggleExchange);
+
+function toggleExchange() {
+  if (mainContentIsShowing) {
+    mainSection.style.display = "none"; // Clear the content
+    exchangeSection.style.display = "flex";
+    mainContentIsShowing = false; // Toggle the flag
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Makes the scroll smooth
+    });
+  } else {
+    mainSection.style.display = "";
+    exchangeSection.style.display = "none";
+    mainContentIsShowing = true; // Toggle the flag
+  }
+}
 const scrollDownToNews = function () {
+  if (exchangeSection.style.display == "flex") {
+    exchangeSection.style.display = "none";
+    mainSection.style.display = "";
+    mainContentIsShowing = true;
+  }
   newsSection.scrollIntoView({
     behavior: "smooth",
   });
 };
 const scrollDownToCrypto = function () {
+  if (exchangeSection.style.display == "flex") {
+    exchangeSection.style.display = "none";
+    mainSection.style.display = "";
+    mainContentIsShowing = true;
+  }
   tableContainer.scrollIntoView({
     behavior: "smooth",
   });
@@ -183,7 +217,7 @@ const getTrending = async function () {
               </div>
               <div class="trending-amount">
                 <h4>
-                  $${coinData.coins[0].item.data.price.toFixed(7)}
+                  $${coinData.coins[0].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[0].item.data.price_change_percentage_24h
                       .usd < 0
@@ -197,12 +231,12 @@ const getTrending = async function () {
                         : "fa-caret-up green"
                     }"></i> 
                     ${coinData.coins[0].item.data.price_change_percentage_24h.usd.toFixed(
-                      2
+                      0
                     )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[1].item.data.price.toFixed(7)}
+                  $${coinData.coins[1].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[1].item.data.price_change_percentage_24h
                       .usd < 0
@@ -215,12 +249,12 @@ const getTrending = async function () {
                         ? "fa-caret-down red"
                         : "fa-caret-up green"
                     }"></"></i> ${coinData.coins[1].item.data.price_change_percentage_24h.usd.toFixed(
-        2
+        0
       )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[2].item.data.price.toFixed(7)}
+                  $${coinData.coins[2].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[2].item.data.price_change_percentage_24h
                       .usd < 0
@@ -233,7 +267,7 @@ const getTrending = async function () {
                         ? "fa-caret-down red"
                         : "fa-caret-up green"
                     }""></i> ${coinData.coins[2].item.data.price_change_percentage_24h.usd.toFixed(
-        2
+        0
       )}%</span
                   >
                 </h4>
@@ -251,7 +285,7 @@ const getTrending = async function () {
               </div>
               <div class="trending-amount">
                 <h4>
-                  $${coinData.coins[3].item.data.price.toFixed(7)}
+                  $${coinData.coins[3].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[3].item.data.price_change_percentage_24h
                       .usd < 0
@@ -265,12 +299,12 @@ const getTrending = async function () {
                         : "fa-caret-up green"
                     }"></i> 
                     ${coinData.coins[3].item.data.price_change_percentage_24h.usd.toFixed(
-                      2
+                      0
                     )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[4].item.data.price.toFixed(7)}
+                  $${coinData.coins[4].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[4].item.data.price_change_percentage_24h
                       .usd < 0
@@ -283,12 +317,12 @@ const getTrending = async function () {
                         ? "fa-caret-down red"
                         : "fa-caret-up green"
                     }"></"></i> ${coinData.coins[4].item.data.price_change_percentage_24h.usd.toFixed(
-        2
+        0
       )}%</span
                   >
                 </h4>
                 <h4>
-                  $${coinData.coins[5].item.data.price.toFixed(7)}
+                  $${coinData.coins[5].item.data.price.toFixed(5)}
                   <span class="${
                     coinData.coins[5].item.data.price_change_percentage_24h
                       .usd < 0
@@ -301,7 +335,75 @@ const getTrending = async function () {
                         ? "fa-caret-down red"
                         : "fa-caret-up green"
                     }""></i> ${coinData.coins[5].item.data.price_change_percentage_24h.usd.toFixed(
-        2
+        0
+      )}%</span
+                  >
+                </h4>
+              </div>
+              <div class="trending-coins">
+                <h4><img src="${
+                  coinData.coins[6].item.small
+                }" class="trending-img"> ${coinData.coins[6].item.name}</h4>
+                <h4><img src="${
+                  coinData.coins[7].item.small
+                }" class="trending-img"> ${coinData.coins[7].item.name}</h4>
+                <h4><img src="${
+                  coinData.coins[8].item.small
+                }" class="trending-img"> ${coinData.coins[8].item.name}</h4>
+              </div>
+              <div class="trending-amount">
+                <h4>
+                  $${coinData.coins[6].item.data.price.toFixed(5)}
+                  <span class="${
+                    coinData.coins[6].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[6].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></i> 
+                    ${coinData.coins[6].item.data.price_change_percentage_24h.usd.toFixed(
+                      0
+                    )}%</span
+                  >
+                </h4>
+                <h4>
+                  $${coinData.coins[7].item.data.price.toFixed(5)}
+                  <span class="${
+                    coinData.coins[7].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid ${
+                      coinData.coins[7].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }"></"></i> ${coinData.coins[7].item.data.price_change_percentage_24h.usd.toFixed(
+        0
+      )}%</span
+                  >
+                </h4>
+                <h4>
+                  $${coinData.coins[8].item.data.price.toFixed(5)}
+                  <span class="${
+                    coinData.coins[8].item.data.price_change_percentage_24h
+                      .usd < 0
+                      ? "red"
+                      : "green"
+                  }"
+                    ><i class="fa-solid  ${
+                      coinData.coins[8].item.data.price_change_percentage_24h
+                        .usd < 0
+                        ? "fa-caret-down red"
+                        : "fa-caret-up green"
+                    }""></i> ${coinData.coins[8].item.data.price_change_percentage_24h.usd.toFixed(
+        0
       )}%</span
                   >
                 </h4>
@@ -394,6 +496,11 @@ const holderFunction = function () {
 
 window.addEventListener("load", holderFunction);
 titleDiv.addEventListener("click", () => {
+  if (exchangeSection.style.display == "flex") {
+    exchangeSection.style.display = "none";
+    mainSection.style.display = "";
+    mainContentIsShowing = true;
+  }
   window.scrollTo({
     top: 0,
     behavior: "smooth", // Makes the scroll smooth
