@@ -18,6 +18,7 @@ const newsBtn = document.querySelector("#news");
 const newsSection = document.querySelector(".news-section");
 const cryptocurrenciesBtn = document.querySelector("#cryptocurrencies");
 const tableContainer = document.querySelector(".table-container");
+const favourites = document.querySelector("#favourites");
 
 export const options = {
   method: "GET",
@@ -99,6 +100,17 @@ const scrollDownToCrypto = function () {
   LONG TABLE OF MARKET PRICES FUNCTIONALITY
 
 */
+function loadFavourites() {
+  const storedFavourites = JSON.parse(localStorage.getItem("favourites")) || [];
+  storedFavourites.forEach((coinName) => {
+    favourites.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${coinName}" data-coin-name="${coinName}">${coinName}</option>`
+    );
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadFavourites);
 
 const marketPrices = async function () {
   try {
@@ -115,7 +127,7 @@ const marketPrices = async function () {
             <td class="position-value">${coin.market_cap_rank}</td>
             <td class="coin-value"><img class="crypto-img" src="${
               coin.image
-            }"/> ${coin.name}</td>
+            }"/> ${coin.name} <i class="fa-regular fa-star star-table"></i></td>
             <td class="price-value">$${coin.current_price.toLocaleString(
               "en-US"
             )}</td>
@@ -131,9 +143,60 @@ const marketPrices = async function () {
         `
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 100)); // 500 ms delay
-      await getChartData(coin.id, index); // Call the function to load the chart data
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      await getChartData(coin.id, index);
     }
+    coinTable.addEventListener("click", (e) => {
+      if (e.target.classList.contains("star-table")) {
+        let currentBtn = e.target;
+        if (currentBtn.classList.contains("fa-regular")) {
+          console.log("Changing to solid star");
+          currentBtn.classList.remove("fa-regular");
+          currentBtn.classList.add("fa-solid");
+          addToFavourites(currentBtn);
+        } else if (currentBtn.classList.contains("fa-solid")) {
+          console.log("Changing to regular star");
+          currentBtn.classList.remove("fa-solid");
+          currentBtn.classList.add("fa-regular");
+          removeFromFavourites(currentBtn);
+        }
+      } else {
+        console.log("Clicked outside star button");
+      }
+    });
+    function addToFavourites(currentBtn) {
+      if (currentBtn.classList.contains("fa-solid")) {
+        const coinElement = currentBtn.parentElement;
+        const coinName = coinElement.textContent.trim();
+        favourites.insertAdjacentHTML(
+          "beforeend",
+          `<option value="${coinName}" data-coin-name="${coinName}">${coinName}</option>`
+        );
+        const storedFavourites =
+          JSON.parse(localStorage.getItem("favourites")) || [];
+        if (!storedFavourites.includes(coinName)) {
+          storedFavourites.push(coinName);
+          localStorage.setItem("favourites", JSON.stringify(storedFavourites));
+        }
+      }
+    }
+    function removeFromFavourites(currentBtn) {
+      if (currentBtn.classList.contains("fa-regular")) {
+        const coinElement = currentBtn.parentElement;
+        const coinName = coinElement.textContent.trim();
+        const optionToRemove = favourites.querySelector(
+          `option[data-coin-name=${coinName}]`
+        );
+        if (optionToRemove) {
+          optionToRemove.remove();
+          let storedFavourites =
+            JSON.parse(localStorage.getItem("favourites")) || [];
+          storedFavourites = storedFavourites.filter((fav) => fav !== coinName);
+          localStorage.setItem("favourites", JSON.stringify(storedFavourites));
+        }
+      }
+    }
+
     setupSortFunctionality();
   } catch (error) {
     console.error(error);
@@ -450,6 +513,7 @@ const getActiveCryptocurrencies = async function () {
 
 
   SEARCH FOR CRYPTO FUNCTIONALITY
+  AND DISPLAY FAVOURITES
 
 
 */
@@ -481,6 +545,41 @@ const searchForCrypto = async function (e) {
     console.error(error);
   }
 };
+
+const searchForFavourites = function () {
+  favourites.addEventListener("change", async function (e) {
+    const coin = e.currentTarget.value.toLowerCase();
+    if (coin == "favourites") {
+      return;
+    } else {
+      searchCryptoContainer.innerHTML = "";
+      try {
+        const data = await API.get(`search?query=${coin}`, options);
+        console.log(data);
+        const priceSearch = data.coins[0].id;
+        const priceData = await API.get(
+          `simple/price?ids=${priceSearch}&vs_currencies=usd`,
+          options
+        );
+        searchInput.value = "";
+        searchCryptoContainer.insertAdjacentHTML(
+          "beforeend",
+          `
+      <div class="search-crypto-img">
+      <img src="${data.coins[0].large}" class="search-crypto-img"/></div>
+      <div class="search-crypto-desc">
+      <h1>${data.coins[0].name} [ ${data.coins[0].symbol} ]</h1>
+      <h2>Market Cap Rank: ${data.coins[0].market_cap_rank}</h2>
+      <h2>$${priceData[priceSearch]?.usd.toLocaleString() ?? ""}</h2>
+      </div>`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  });
+};
+searchForFavourites();
 
 /* 
 

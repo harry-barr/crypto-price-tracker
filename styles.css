@@ -292,7 +292,7 @@ html {
   display: flex;
   flex-direction: row;
   margin-top: 8px;
-  gap: 30px;
+  gap: 55px;
 }
 
 .trending-amount {
@@ -379,8 +379,12 @@ html {
 .coin-table .graph-value {
   height: 70px;
   color: rgba(0, 0, 0, 0.763);
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
+.coin-table .coin-value {
+  position: relative;
+}
+
 .coin-table .position-value,
 .coin-table .coin-value,
 .coin-table .price-value,
@@ -397,9 +401,22 @@ html {
   font-weight: 700;
 }
 .crypto-img {
-  height: 25px;
-  width: 25px;
-  margin-right: 17px;
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  left: 15px;
+  bottom: 37px;
+}
+.fa-star.star-table {
+  position: absolute;
+  left: 400px;
+  bottom: 43px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+.fa-star.star-table:hover {
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 .trending-img {
   height: 25px;
