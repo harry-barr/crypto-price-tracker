@@ -36,12 +36,34 @@
           </select>
         </div>
       </nav>
+      <div class="dark-mode-container">
+        <button class="dark-mode-btn">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+      </div>
       <form class="search-div" id="search-form">
         <input type="text" class="search-input" placeholder="search..." />
         <button class="search-btn" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
+      <div class="burger-menu">
+        <button class="burger-btn"><i class="fa-solid fa-bars"></i></button>
+      </div>
+
+      <nav class="nav-menu">
+        <ul class="list-items">
+          <li>
+            <button class="nav-btn burger" id="cryptocurrencies">
+              Cryptocurrencies
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn burger" id="exchanges">Exchanges</button>
+          </li>
+          <li><button class="nav-btn burger" id="news">News</button></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="cryptocurrency-exchanges-section">
@@ -97,7 +119,7 @@
     <div class="main-section">
       <div class="main-content-title-div">
         <div class="title-and-search-crypto-container">
-          <div>
+          <div class="title-sub">
             <h1>Cryptocurrency Prices by Market Cap</h1>
             <p>Changes in the last 24h</p>
           </div>
@@ -157,5 +179,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" type="module"></script>
     <script src="graphs.js" type="module"></script>
     <script src="exchanges.js" type="module"></script>
+    <script src="dark-mode.js" type="module"></script>
   </body>
 </html>

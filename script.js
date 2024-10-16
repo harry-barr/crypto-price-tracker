@@ -14,9 +14,9 @@ const titleDiv = document.querySelector(".title-and-search-div");
 const searchCryptoContainer = document.querySelector(
   ".search-crypto-container"
 );
-const newsBtn = document.querySelector("#news");
+const newsBtn = document.querySelectorAll("#news");
 const newsSection = document.querySelector(".news-section");
-const cryptocurrenciesBtn = document.querySelector("#cryptocurrencies");
+const cryptocurrenciesBtn = document.querySelectorAll("#cryptocurrencies");
 const tableContainer = document.querySelector(".table-container");
 const favourites = document.querySelector("#favourites");
 
@@ -49,7 +49,7 @@ window.addEventListener("scroll", () => {
     bitcoinIcon.style.animation = "2s rotate ease-in-out 1";
   }
 });
-const exchangeBtn = document.querySelector("#exchanges");
+const exchangeBtn = document.querySelectorAll("#exchanges");
 const mainSection = document.querySelector(".main-section");
 const exchangeSection = document.querySelector(
   ".cryptocurrency-exchanges-section"
@@ -57,9 +57,13 @@ const exchangeSection = document.querySelector(
 
 let mainContentIsShowing = true; // Initialize as false
 
-exchangeBtn.addEventListener("click", toggleExchange);
-
+exchangeBtn.forEach((btn) => {
+  btn.addEventListener("click", toggleExchange);
+});
 function toggleExchange() {
+  if (navMenu.classList.contains("open")) {
+    navMenu.classList.remove("open");
+  }
   if (mainContentIsShowing) {
     mainSection.style.display = "none"; // Clear the content
     exchangeSection.style.display = "flex";
@@ -75,6 +79,9 @@ function toggleExchange() {
   }
 }
 const scrollDownToNews = function () {
+  if (navMenu.classList.contains("open")) {
+    navMenu.classList.remove("open");
+  }
   if (exchangeSection.style.display == "flex") {
     exchangeSection.style.display = "none";
     mainSection.style.display = "";
@@ -85,6 +92,9 @@ const scrollDownToNews = function () {
   });
 };
 const scrollDownToCrypto = function () {
+  if (navMenu.classList.contains("open")) {
+    navMenu.classList.remove("open");
+  }
   if (exchangeSection.style.display == "flex") {
     exchangeSection.style.display = "none";
     mainSection.style.display = "";
@@ -143,7 +153,7 @@ const marketPrices = async function () {
         `
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       await getChartData(coin.id, index);
     }
     coinTable.addEventListener("click", (e) => {
@@ -483,7 +493,7 @@ const getActiveCryptocurrencies = async function () {
     marketCap.insertAdjacentHTML(
       "beforeend",
       `<h3>${data.data.active_cryptocurrencies}</h3>
-      <h4>Total Number of Active Cryptocurrencies</h4>`
+      <h4 class="content-description1">Total Number of Active Cryptocurrencies</h4>`
     );
     tradingVolume.insertAdjacentHTML(
       "beforeend",
@@ -502,7 +512,7 @@ const getActiveCryptocurrencies = async function () {
       )}%</span
               >
             </h3>
-            <h4>Market Cap 24h Change</h4>`
+            <h4 class="content-description2">Market Cap 24h Change</h4>`
     );
   } catch (error) {
     console.error(error);
@@ -538,7 +548,9 @@ const searchForCrypto = async function (e) {
       <div class="search-crypto-desc">
       <h1>${data.coins[0].name} [ ${data.coins[0].symbol} ]</h1>
       <h2>Market Cap Rank: ${data.coins[0].market_cap_rank}</h2>
-      <h2>$${priceData[priceSearch]?.usd.toLocaleString() ?? ""}</h2>
+      <h2 class="price">$${
+        priceData[priceSearch]?.usd.toLocaleString() ?? ""
+      }</h2>
       </div>`
     );
   } catch (error) {
@@ -606,8 +618,12 @@ titleDiv.addEventListener("click", () => {
   });
 });
 searchForm.addEventListener("submit", searchForCrypto);
-newsBtn.addEventListener("click", scrollDownToNews);
-cryptocurrenciesBtn.addEventListener("click", scrollDownToCrypto);
+newsBtn.forEach((btn) => {
+  btn.addEventListener("click", scrollDownToNews);
+});
+cryptocurrenciesBtn.forEach((btn) => {
+  btn.addEventListener("click", scrollDownToCrypto);
+});
 
 /* 
 
@@ -691,3 +707,10 @@ const getChartData = async function (coin, index) {
     console.error(error);
   }
 };
+
+const burgerBtn = document.querySelector(".burger-btn");
+const navMenu = document.querySelector(".nav-menu");
+
+burgerBtn.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});

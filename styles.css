@@ -45,6 +45,20 @@ html {
 .title-and-search-div {
   width: 400px;
 }
+.dark-mode-container .fa-moon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgba(9, 9, 8, 0.667);
+}
+.dark-mode-container .fa-sun {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 0, 0.708);
+}
+.dark-mode-btn {
+  border: none;
+  background: transparent;
+}
 
 #header .search-input {
   padding: 10px;
@@ -70,7 +84,7 @@ html {
   border: none;
   position: relative;
   margin-top: 5px;
-  top: -4px;
+  top: -5px;
   left: 135px;
   cursor: pointer;
   display: flex;
@@ -81,18 +95,7 @@ html {
   letter-spacing: 1px;
   font-size: smaller;
 }
-/* #header .search-btn:after {
-  content: "";
-  width: 105%;
-  height: 110%;
-  background: linear-gradient(to bottom right, #ffffff, #010101);
-  z-index: -1;
-  position: absolute;
-  top: -1.4px;
-  left: -1.8px;
-  border-radius: 1000px;
-  box-shadow: 10px 0 800px #030301;
-} */
+
 .search-btn:hover {
   color: white;
   z-index: 0;
@@ -176,8 +179,10 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 0;
   flex-wrap: wrap;
+  width: 100%;
 }
 .main-content-title-div h1 {
   margin-top: 140px;
@@ -190,7 +195,7 @@ html {
   margin-left: 35px;
 }
 .leaderboard-container {
-  width: 100vw;
+  width: 100%;
   height: 250px;
   border-radius: 30px;
   margin-bottom: 30px;
@@ -206,7 +211,7 @@ html {
   flex-direction: column;
   gap: 5px;
   margin-top: 30px;
-  margin-left: 45px;
+  margin-left: 15px;
 }
 .div-for-market-cap-and-trading-volume .market-cap,
 .div-for-market-cap-and-trading-volume .trading-volume {
@@ -233,17 +238,20 @@ html {
   color: #52a50e;
   margin-left: 5px;
   font-size: 0.9rem;
+  background: transparent;
 }
 .red {
   color: rgb(227, 22, 22);
   margin-left: 5px;
   font-size: 0.9rem;
+  background: transparent;
 }
 .green.trading-volume,
 .red.trading-volume {
   font-size: 1.5rem;
   border: none;
   box-shadow: none;
+  background: transparent;
 }
 
 .trending-div {
@@ -292,7 +300,7 @@ html {
   display: flex;
   flex-direction: row;
   margin-top: 8px;
-  gap: 55px;
+  gap: 45px;
 }
 
 .trending-amount {
@@ -309,13 +317,11 @@ html {
 */
 
 .table-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
 .coin-table {
+  display: inline-block;
   background: none;
   border-radius: 10px;
   width: 100%;
@@ -409,7 +415,7 @@ html {
 }
 .fa-star.star-table {
   position: absolute;
-  left: 400px;
+  right: 20px;
   bottom: 43px;
   font-size: 1.5rem;
   cursor: pointer;
@@ -663,4 +669,303 @@ footer hr {
   position: absolute;
   top: -20px;
   left: 230px;
+}
+
+/*
+
+  BURGER MENU STYLES
+
+*/
+
+.burger-menu {
+  display: none;
+  z-index: 11;
+}
+
+.burger-btn {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.84);
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.burger-menu .fa-bars {
+  font-size: 4rem;
+}
+
+.nav-menu {
+  position: absolute;
+  top: 0rem;
+  right: 0.5rem;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem;
+  height: fit-content;
+  min-width: 90vw;
+  border-radius: 1rem;
+  align-items: center;
+  display: none;
+  background: linear-gradient(100deg, #ffffff, #fff3f3);
+  width: 100vw;
+  height: 30vh;
+}
+.nav-menu.open {
+  display: flex; /* Show menu */
+}
+.nav-menu ul {
+  list-style-type: none;
+}
+.nav-btn.burger {
+  padding: 0.5rem 3rem;
+  margin: 0.25rem;
+  background: linear-gradient(100deg, #fffdfd, #fff1f1);
+  border-radius: 10px;
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.737);
+  min-width: 50vw;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+}
+.list-item:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.nav-live {
+  color: white;
+}
+
+/* 
+
+  MEDIA QUERIES
+
+*/
+
+@media screen and (max-width: 1400px) {
+  .trending {
+    width: 900px;
+    margin-right: 20px;
+  }
+  .trending-container {
+    gap: 5px;
+  }
+  .coin-table .position {
+    width: 50px;
+  }
+  .coin-table .coin {
+    width: 350px;
+  }
+  .coin-table .price {
+    width: 110px;
+  }
+  .coin-table .volume {
+    width: 140px;
+  }
+  .coin-table .market-cap {
+    width: 190px;
+  }
+  .coin-table .graph {
+    width: 190px;
+  }
+  .coin-table .position-value,
+  .coin-table .coin-value,
+  .coin-table .price-value,
+  .coin-table .volume-value,
+  .coin-table .market-cap-value,
+  .coin-table .graph-value {
+    font-size: 0.8rem;
+  }
+  .coin-table {
+    margin-left: 20px;
+  }
+  .div-for-market-cap-and-trading-volume .market-cap,
+  .div-for-market-cap-and-trading-volume .trading-volume {
+    width: 270px;
+  }
+  .search-div,
+  .nav-bar {
+    display: none;
+  }
+  .burger-menu {
+    display: flex;
+    margin-right: 50px;
+  }
+  #header {
+    gap: 0px;
+    justify-content: space-between;
+  }
+  .table-container {
+    margin-right: 40px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .table-container {
+    margin-right: 40px;
+  }
+  .trending {
+    width: 800px;
+  }
+  .trending-coins h4 {
+    font-size: 0.8rem;
+  }
+  .trending-amount h4 {
+    font-size: 0.8rem;
+  }
+  .trending-amount {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .table-container {
+    margin-top: 50px;
+    margin: 40px;
+  }
+  .leaderboard-container {
+    display: none;
+  }
+  .fa-star.star-table {
+    font-size: 1rem;
+  }
+  .crypto-img {
+    height: 20px;
+    width: 20px;
+    bottom: 42px;
+  }
+  .coin-table .graph {
+    width: 100px;
+  }
+  .coin-table .position-value,
+  .coin-table .coin-value,
+  .coin-table .price-value,
+  .coin-table .volume-value,
+  .coin-table .market-cap-value,
+  .coin-table .graph-value {
+    font-size: 0.6rem;
+  }
+}
+
+/* 
+
+
+  DARK MODE STYLES
+
+
+*/
+
+body.dark-mode {
+  background: #303030;
+  color: #46923c;
+}
+.dark-mode #header {
+  background: #303030;
+  color: #46923c;
+  border-bottom: 2px solid #46923c;
+}
+.dark-mode .title-sub h1,
+.dark-mode .title-sub p {
+  color: white !important;
+}
+.dark-mode .nav-btn {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.692);
+}
+.dark-mode .nav-btn:hover {
+  color: #46923c;
+}
+.dark-mode .title-sub h1 {
+  color: #46923c;
+}
+
+.dark-mode .market-cap,
+.dark-mode .trading-volume {
+  background: transparent;
+  border-color: #46923c;
+}
+.dark-mode .content-description1,
+.dark-mode .content-description2,
+.dark-mode .coin-table .position-value,
+.dark-mode .coin-table .coin-value,
+.dark-mode .coin-table .price-value,
+.dark-mode .coin-table .volume-value,
+.dark-mode .coin-table .market-cap-value,
+.dark-mode .coin-table .graph-value,
+.dark-mode .coin-table .position,
+.dark-mode .coin-table .coin,
+.dark-mode .coin-table .price,
+.dark-mode .coin-table .volume,
+.dark-mode .coin-table .market-cap,
+.dark-mode .coin-table .graph,
+.dark-mode .coin-table {
+  color: white;
+  border-color: #46923c;
+  background: transparent;
+}
+.dark-mode .trending {
+  border: 2px solid #46923c;
+}
+.dark-mode #header .search-btn {
+  background-color: rgb(189, 163, 163);
+  color: black;
+}
+.dark-mode #header .search-input {
+  background: white;
+  color: black;
+}
+.dark-mode .trending h4 {
+  color: white;
+}
+.dark-mode .search-crypto-desc,
+.dark-mode .search-crypto-desc h1,
+.dark-mode .search-crypto-desc h2 {
+  color: white;
+}
+.dark-mode .search-crypto-desc .price {
+  color: #46923c;
+}
+.dark-mode .news-section .news-title-div {
+  color: white;
+  border-bottom: 4px solid white;
+}
+.dark-mode .news-tile-container .main-news .main-news-left,
+.dark-mode .news-tile-container .main-news .main-news-right {
+  background: linear-gradient(#3b3838, #211b1b);
+}
+.dark-mode .news-tile-headline {
+  color: white;
+}
+.dark-mode .news-tile-headline:hover {
+  color: rgb(203, 187, 187);
+}
+.dark-mode .news-tile-divider {
+  background-color: #46923c;
+}
+.dark-mode .news-tile-desc {
+  color: white;
+}
+.dark-mode footer hr {
+  background-color: #46923c;
+}
+.dark-mode .title-and-links ul a,
+.dark-mode .title-and-links h1 {
+  color: white;
+}
+.dark-mode .title-and-links h1 {
+  border-bottom: 3px solid white;
+}
+.dark-mode .burger-btn {
+  color: white;
+}
+.dark-mode .coin-table .fa-caret-up,
+.dark-mode .coin-table .fa-caret-down {
+  color: white;
+}
+.dark-mode .nav-menu {
+  background: #303030;
+}
+.dark-mode .nav-btn.burger {
+  color: white;
 }
